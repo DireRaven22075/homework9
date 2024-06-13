@@ -34,7 +34,17 @@ void menu(char *command) {
     printf("----------------------------------------------------------------\n");
     printf("Enter Command >> ");
     //사용자로부터 명령어 입력받기
-    scanf(" %c", command);
+    while(1) {
+        scanf(" %c", command);
+        //명령어가 올바른 경우 반복문 종료
+        if ( *command == 'z' ||
+            *command == 'v' || *command == 'e' || *command == 'd' ||
+            *command == 'b' || *command == 'p' || *command == 'q') {
+            break;
+        }
+        //명령어가 올바르지 않은 경우 다시 입력
+        printf("Invalid Command\n");
+    }
     return;
 }
 //정점 입력 받기
@@ -269,8 +279,6 @@ int main(void) {
             case 'p': printGraph(graph); break;
             //프로그램 종료
             case 'q': goto QUIT; break;
-            //잘못된 명령어 입력시
-            default: printf("Invalid Command\n"); break;
         }
     }
     //프로그램 종료
